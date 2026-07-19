@@ -1,0 +1,8 @@
+{
+  "name": "product-agents",
+  "description": "research, evaluation, and design subagents for B2C consumer product improvement.",
+  "version": "1.0.0",
+  "author": {
+    "name": "ronbrightman"
+  }
+}

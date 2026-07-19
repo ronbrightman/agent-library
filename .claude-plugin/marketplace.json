@@ -1,0 +1,14 @@
+{
+  "name": "agent-library",
+  "owner": {
+    "name": "ronbrightman"
+  },
+  "description": "Portable Claude Code agents for consumer (B2C) product research, prioritization, and design.",
+  "plugins": [
+    {
+      "name": "product-agents",
+      "source": "./plugins/product-agents",
+      "description": "research, evaluation, and design subagents for B2C consumer product improvement — grounded in real growth/retention/monetization patterns, RICE-based prioritization, and current UI/UX research."
+    }
+  ]
+}
