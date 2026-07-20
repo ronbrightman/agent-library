@@ -70,6 +70,46 @@ rather than buried in one number:
   or could create meaningful unplanned cost. Low/medium/high, with
   specifics.
 
+## Founder-adjusted priority score — standing weighting rule, apply every run
+
+Standard RICE treats Effort as a plain divisor, which implicitly assumes
+engineering time is the scarce, expensive resource. For this pipeline
+specifically that assumption doesn't hold: implementation is done by
+Claude Code, a cheap, easily-allocated resource for the human running
+this pipeline — not a bottleneck the way hiring/scheduling a human
+engineer would be. What actually costs the human hard-to-recover
+resources instead: ongoing operational risk, ongoing run cost, and
+their own personal time/involvement (account creation, moderation,
+decisions, support). Build effort should therefore count for meaningfully
+less in the final ranking than plain RICE gives it, while risk, run
+cost, and personal involvement should count for meaningfully more.
+
+Compute and show the standard RICE score as before (for comparability),
+but rank ideas by a separate **Priority Score**:
+
+`Priority Score = (Reach × Impact × Confidence) / sqrt(Effort) × RiskFactor × RunCostFactor × InvolvementFactor`
+
+- Divide by **sqrt(Effort)**, not Effort — this roughly halves how much
+  build/dev effort alone suppresses an idea's ranking, reflecting that
+  it's the cheapest resource in this pipeline.
+- **RiskFactor**: Low = 1.0, Medium = 0.6, High = 0.3 — use the worse of
+  technical risk and security/cost risk if they differ.
+- **RunCostFactor**: Low = 1.0, Medium = 0.6, High = 0.3 — based on
+  realistic ongoing $/month at plausible usage; use your judgment for
+  what counts as low/medium/high at this product's actual scale.
+- **InvolvementFactor**: Low = 1.0, Medium = 0.6, High = 0.3 — based on
+  ongoing personal time/attention the idea demands from the human
+  (moderation, account management, support, manual curation, deciding
+  operational parameters like ad frequency, etc.) — this is a
+  first-class, quantitative ranking factor now, not just a descriptive
+  note buried in a table cell.
+
+Show both scores side by side in the output table so the human can see
+how the reweighting changed the ranking, and **rank the final list by
+Priority Score, not raw RICE**. This weighting is a standing instruction
+for this pipeline — apply it on every future run without being reminded,
+not just when explicitly asked.
+
 ## Flag approval-gated ideas explicitly
 
 Per the standard escalation policy this pipeline follows (see
@@ -83,9 +123,9 @@ mid-build.
 
 ## Output
 
-A ranked table, highest RICE score first:
+A ranked table, **highest Priority Score first** (not raw RICE — see above):
 
-| Idea | Reach | Impact | Confidence | Effort | RICE score | Build cost | Run cost | Personal involvement | Risk | Flags |
+| Idea | Reach | Impact | Confidence | Effort | RICE score | Risk | RunCostFactor | InvolvementFactor | Priority Score | Build cost | Run cost | Personal involvement | Flags |
 
 Followed by a short written recommendation: which 1-3 ideas you'd
 pursue first and why, in plain language, referencing the numbers.
