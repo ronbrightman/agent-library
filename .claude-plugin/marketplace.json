@@ -3,12 +3,12 @@
   "owner": {
     "name": "ronbrightman"
   },
-  "description": "Portable Claude Code agents for consumer (B2C) product research, prioritization, and design.",
+  "description": "Portable Claude Code agents for consumer (B2C) product research, marketing, prioritization, and design.",
   "plugins": [
     {
       "name": "product-agents",
       "source": "./plugins/product-agents",
-      "description": "research, evaluation, and design subagents for B2C consumer product improvement — grounded in real growth/retention/monetization patterns, RICE-based prioritization, and current UI/UX research."
+      "description": "research, marketing, evaluation, and design subagents for B2C consumer product improvement — grounded in real growth/retention/monetization patterns, RICE-based prioritization, and current UI/UX research. Bundles frozen (locally-owned, MIT/Apache-2.0 licensed) copies of third-party reference skills, not live plugin dependencies."
     }
   ]
 }
