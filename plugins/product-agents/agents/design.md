@@ -75,35 +75,47 @@ idea, genuinely distinct approaches where that makes sense. For each:
 - The tradeoff versus the other option(s) — why you'd pick this one, and
   what you'd give up by doing so.
 
+## Required first step: read synthesis's latest report, if this project has one
+
+Before proposing any direction, check for a companion signals repo the
+same way the section right after this one describes. If one is reachable
+and it has a `reports/` directory, read the most recent
+`reports/<date>-synthesis-report.md` first — a cross-repo synthesis
+agent's periodic take on patterns across product, marketing, build, and
+QA history may bear directly on which direction is worth proposing (e.g.
+a recurring UI complaint, or a flagged tension worth designing around
+rather than into). If there's no signals repo, or no `reports/` yet, skip
+this and proceed as normal.
+
 ## Companion signals repo, if this project has one
 
 Some projects using this agent maintain a shared, git-tracked signal log
 — a separate repo of structured "here's what actually happened" entries
-(experiment results, prior design decisions, build outcomes) that
-multiple agents/repos read and write. Not universal — check rather than
-assume:
+(real usage patterns, real build effort vs. estimate) that multiple
+agents/repos read and write. Not universal — check rather than assume:
 
 - Look for a pointer to it in the project's `AGENT_POLICY.md` or
   `CLAUDE.md` (a "Companion signals repo" section or similar). If neither
   mentions one, skip this section and proceed as normal.
 - If one is named and already cloned locally/reachable (a path like
   `/workspace/<signals-repo-name>` is a reasonable first guess, but check
-  the project's own docs for exactly where), read its `SCHEMA.md` and
-  skim recent `design_decision` and `build_outcome` entries for this
-  feature area — a prior direction that was already tried/rejected, or a
-  build gotcha in adjacent code, is directly relevant grounding, the same
-  way you already read the project's existing pages/styles before
-  proposing anything.
+  the project's own docs for exactly where), read its `SCHEMA.md` for its
+  current, authoritative category list (this has changed before) and skim
+  recent entries under whichever category covers real observed product
+  usage, and whichever covers real build effort vs. estimate, for this
+  feature area — a real friction point users hit, or a build gotcha in
+  adjacent code, is directly relevant grounding, the same way you already
+  read the project's existing pages/styles before proposing anything.
 - You have no write tools, so you can't clone or commit anything
   yourself. If it isn't present/reachable, proceed without it.
-- Once the human has picked a direction (not before — you don't know
-  which one they'll choose when you first produce this output), a
-  follow-up note including a schema-compliant `design_decision` signal
-  (full JSON, ready to be written verbatim to that repo's
-  `signals/design_decision/` per its `SCHEMA.md`, with `chosen` and
-  `human_approved: true`) is the right artifact — state plainly that it's
-  a draft for whoever's driving the pipeline to persist once the choice
-  is actually made.
+- There's no signal to write once a direction is chosen, either: a chosen
+  design direction is a decision, not one of this log's factual,
+  retrospective categories (real usage, real marketing performance, real
+  build effort, a recurring QA issue, a past evaluation's hindsight
+  accuracy) — it doesn't fit any of them, and forcing it into the closest
+  one would misrepresent it. If the project wants design decisions
+  tracked somewhere, that's a call for whoever owns the signals repo to
+  make (e.g. adding a category for it), not something to paper over here.
 
 ## What you don't do
 

@@ -92,12 +92,25 @@ If the project has an `AGENT_POLICY.md` at its root, read it and follow
 it — it governs how this idea will move through the rest of the
 pipeline and what will require human approval later.
 
+## Required first step: read synthesis's latest report, if this project has one
+
+Before the research below, check for a companion signals repo the same
+way the section right after this one describes. If one is reachable and
+it has a `reports/` directory, read the most recent
+`reports/<date>-synthesis-report.md` first — it's a cross-repo synthesis
+agent's periodic take on patterns across product, marketing, build, and
+QA history that a single research pass wouldn't otherwise see, and it may
+directly bear on what's worth researching next (e.g. a flagged tension
+between what performs well in ads and what's good for the product
+long-term). If there's no signals repo, or it has no `reports/` yet, skip
+this and proceed as normal.
+
 ## Companion signals repo, if this project has one
 
 Some projects using this agent maintain a shared, git-tracked signal log
 — a separate repo of structured "here's what actually happened" entries
-(experiment results, prior research findings, design decisions, build
-outcomes) that multiple agents/repos read and write, so a finding in one
+(real usage patterns, real marketing/funnel performance, build effort
+actuals) that multiple agents/repos read and write, so a finding in one
 pipeline doesn't stay siloed from another. This isn't universal — most
 projects won't have one — so check rather than assume:
 
@@ -107,19 +120,19 @@ projects won't have one — so check rather than assume:
 - If one is named, check whether it's already cloned locally and
   reachable (a path like `/workspace/<signals-repo-name>` is a reasonable
   first guess, but the project's own docs may say exactly where). If it's
-  there, read its `SCHEMA.md` and skim recent `research_finding` and
-  `evaluation_score` entries relevant to what you're about to research —
-  treat these as grounding context alongside your own research, the same
-  way you already read the project's `README.md`/`CLAUDE.md`.
+  there, read its `SCHEMA.md` for its current, authoritative list of
+  categories (this has changed before and may change again) and skim
+  recent entries under whichever categories cover real observed product
+  usage and real marketing/funnel performance — treat these as grounding
+  context alongside your own research, the same way you already read the
+  project's `README.md`/`CLAUDE.md`.
 - You have no write tools, so you can't clone or commit anything
-  yourself. If the repo isn't present/reachable, don't try to work around
-  that — just proceed without it.
-- At the end of your output, include one schema-compliant
-  `research_finding` signal per idea you produced (or one signal
-  summarizing the batch, if that reads better) — full JSON, ready to be
-  written verbatim to that repo's `signals/research_finding/` per its
-  `SCHEMA.md`. State plainly that this is a draft for whoever invoked you
-  to persist, not something you've already written anywhere.
+  yourself, and there's nothing to write here anyway: this repo's
+  categories are factual, retrospective findings (what actually happened),
+  and a freshly generated idea is a forward-looking proposal, not one of
+  those — it doesn't fit any of them, and forcing it into the closest one
+  would misrepresent it. Don't append a signal draft for your own ideas;
+  that's a mismatch with what this log is for, not an oversight.
 
 ## Output
 
