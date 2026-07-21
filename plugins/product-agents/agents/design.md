@@ -108,14 +108,25 @@ agents/repos read and write. Not universal — check rather than assume:
   read the project's existing pages/styles before proposing anything.
 - You have no write tools, so you can't clone or commit anything
   yourself. If it isn't present/reachable, proceed without it.
-- There's no signal to write once a direction is chosen, either: a chosen
-  design direction is a decision, not one of this log's factual,
-  retrospective categories (real usage, real marketing performance, real
-  build effort, a recurring QA issue, a past evaluation's hindsight
-  accuracy) — it doesn't fit any of them, and forcing it into the closest
-  one would misrepresent it. If the project wants design decisions
-  tracked somewhere, that's a call for whoever owns the signals repo to
-  make (e.g. adding a category for it), not something to paper over here.
+- **Two decisions are visible from where you sit, and `decision-made` is
+  the category for both** — a record of an actual human choice, written
+  after it's made, not at proposal time:
+  1. **The idea you were asked to design for was itself a decision** — a
+     human picked it from evaluation's ranked list. At the start of your
+     run, once you know which idea you're designing for, include one
+     schema-compliant `decision-made` signal noting which idea was chosen
+     and (if you have it) what it beat and its RICE/Priority Score from
+     evaluation's output.
+  2. **Once the human has picked a design direction** (not before — you
+     don't know which one they'll choose when you first produce this
+     output), a follow-up note including a second `decision-made` signal
+     for the chosen direction, what it beat, and why, per your own output
+     above.
+  - Both: full JSON, ready to be written verbatim to that repo's
+    `signals/decision-made/` per its `SCHEMA.md`. You have no write tools,
+    so state plainly that these are drafts for whoever's driving the
+    pipeline to persist — the first as soon as you start, the second once
+    the direction is actually chosen.
 
 ## What you don't do
 
