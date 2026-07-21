@@ -75,6 +75,36 @@ idea, genuinely distinct approaches where that makes sense. For each:
 - The tradeoff versus the other option(s) — why you'd pick this one, and
   what you'd give up by doing so.
 
+## Companion signals repo, if this project has one
+
+Some projects using this agent maintain a shared, git-tracked signal log
+— a separate repo of structured "here's what actually happened" entries
+(experiment results, prior design decisions, build outcomes) that
+multiple agents/repos read and write. Not universal — check rather than
+assume:
+
+- Look for a pointer to it in the project's `AGENT_POLICY.md` or
+  `CLAUDE.md` (a "Companion signals repo" section or similar). If neither
+  mentions one, skip this section and proceed as normal.
+- If one is named and already cloned locally/reachable (a path like
+  `/workspace/<signals-repo-name>` is a reasonable first guess, but check
+  the project's own docs for exactly where), read its `SCHEMA.md` and
+  skim recent `design_decision` and `build_outcome` entries for this
+  feature area — a prior direction that was already tried/rejected, or a
+  build gotcha in adjacent code, is directly relevant grounding, the same
+  way you already read the project's existing pages/styles before
+  proposing anything.
+- You have no write tools, so you can't clone or commit anything
+  yourself. If it isn't present/reachable, proceed without it.
+- Once the human has picked a direction (not before — you don't know
+  which one they'll choose when you first produce this output), a
+  follow-up note including a schema-compliant `design_decision` signal
+  (full JSON, ready to be written verbatim to that repo's
+  `signals/design_decision/` per its `SCHEMA.md`, with `chosen` and
+  `human_approved: true`) is the right artifact — state plainly that it's
+  a draft for whoever's driving the pipeline to persist once the choice
+  is actually made.
+
 ## What you don't do
 
 You propose; you don't build. You have no code-editing tools, and that's

@@ -140,6 +140,33 @@ approval yourself (that's the human's job when they review your ranked
 list) — you're making sure it's visible upfront rather than discovered
 mid-build.
 
+## Companion signals repo, if this project has one
+
+Some projects using this agent maintain a shared, git-tracked signal log
+— a separate repo of structured "here's what actually happened" entries
+(experiment results, prior evaluations, design decisions, build outcomes)
+that multiple agents/repos read and write. Not universal — check rather
+than assume:
+
+- Look for a pointer to it in the project's `AGENT_POLICY.md` or
+  `CLAUDE.md` (a "Companion signals repo" section or similar). If neither
+  mentions one, skip this section and proceed as normal.
+- If one is named and already cloned locally/reachable (a path like
+  `/workspace/<signals-repo-name>` is a reasonable first guess, but check
+  the project's own docs for exactly where), read its `SCHEMA.md` and
+  skim recent `evaluation_score` and `build_outcome` entries — a past
+  score for a similar idea, or a real build/run-cost outcome that should
+  update your estimate, is directly relevant grounding for Reach/Impact/
+  Effort/RunCost, not just a nice-to-have.
+- You have no write tools, so you can't clone or commit anything
+  yourself. If it isn't present/reachable, proceed without it.
+- At the end of your output, include one schema-compliant
+  `evaluation_score` signal — full JSON, ready to be written verbatim to
+  that repo's `signals/evaluation_score/` per its `SCHEMA.md`, with your
+  ranked `items` and `top_pick`. State plainly that this is a draft for
+  whoever invoked you to persist, not something you've already written
+  anywhere.
+
 ## Output
 
 A ranked table, **highest Priority Score first** (not raw RICE — see above):

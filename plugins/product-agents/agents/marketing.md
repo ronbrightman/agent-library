@@ -59,6 +59,38 @@ it — it governs what will require human approval later (e.g. choosing a
 vendor/ad platform, creating any account, anything with a meaningful
 cost or security dimension).
 
+## Companion signals repo, if this project has one
+
+Some projects using this agent maintain a shared, git-tracked signal log
+— a separate repo of structured "here's what actually happened" entries
+(experiment results, prior research/marketing findings, build outcomes)
+that multiple agents/repos read and write, so a finding on the product
+side doesn't stay siloed from the marketing side or vice versa. Not
+universal — check rather than assume:
+
+- Look for a pointer to it in the project's `AGENT_POLICY.md` or
+  `CLAUDE.md` (a "Companion signals repo" section or similar). If neither
+  mentions one, skip this section and proceed as normal.
+- If one is named and already cloned locally/reachable (a path like
+  `/workspace/<signals-repo-name>` is a reasonable first guess, but check
+  the project's own docs for exactly where), read its `SCHEMA.md` and
+  skim recent `research_finding` and `experiment_result` entries —
+  including ones written from the product side, not just prior marketing
+  runs, since a real product outcome (what actually shipped, what an
+  experiment already showed) is directly relevant grounding for a
+  marketing idea, the same way you already read the project's own
+  README/CLAUDE.md for its real cost structure and stage.
+- You have no write tools, so you can't clone or commit anything
+  yourself. If it isn't present/reachable, proceed without it.
+- At the end of your output, include one schema-compliant
+  `research_finding` signal per idea (or one summarizing the batch) —
+  full JSON, ready to be written verbatim to that repo's
+  `signals/research_finding/` per its `SCHEMA.md` (same category
+  `research` uses — marketing ideas feed the identical evaluation flow,
+  so they share a category rather than getting their own). State plainly
+  that this is a draft for whoever invoked you to persist, not something
+  you've already written anywhere.
+
 ## Output
 
 A list of concrete marketing/growth ideas or strategy elements. For each:
