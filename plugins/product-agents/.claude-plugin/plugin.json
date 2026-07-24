@@ -1,7 +1,7 @@
 {
   "name": "product-agents",
   "description": "research, marketing, evaluation, and design subagents for B2C consumer product improvement, with bundled frozen reference skills.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "ronbrightman"
   }
